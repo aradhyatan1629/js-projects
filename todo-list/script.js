@@ -28,18 +28,22 @@ function addTask(){
     inputBox.value='';
     saveData(); 
 }
-let check = false;
+
 listContainer.addEventListener('click',function(e){
     if(e.target.tagName === 'LI'){
         e.target.classList.toggle('checked');
-        check = true;
+        console.log(e.target.classList);
     }
     else if(e.target.tagName === 'SPAN'){
-        if(check){
-            e.target.parentElement.remove();
-            check=false;
+        const listItem = e.target.parentElement;
+        const isChecked = listItem.classList.contains('checked');
+        if(isChecked)
+        {
+            listItem.remove();
+            saveData();
         }
-        else{
+        else
+        {
             alert('Please complete the task before deleting');
         }
         saveData();
